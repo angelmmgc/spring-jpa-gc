@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
@@ -20,7 +22,6 @@ public class BaseController {
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundExceptions(ChangeSetPersister.NotFoundException ex) {
-
         ErrorResponse error = new ErrorResponse(404, ex.getMessage(), LocalDateTime.now());
         return error;
     }
@@ -29,8 +30,8 @@ public class BaseController {
     @ExceptionHandler(NumberFormatException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ErrorResponse handleNumberFormatExceptions(NumberFormatException ex) {
-
-        ErrorResponse error = new ErrorResponse(400, ex.getMessage(), LocalDateTime.now());
+        String message ="el id no es correcto, tiene que ser un numero: %s";
+        ErrorResponse error = new ErrorResponse(400, message, LocalDateTime.now());
         return error;
     }
 
@@ -42,6 +43,8 @@ public class BaseController {
         ErrorResponse error = new ErrorResponse(404, ex.getMessage(), LocalDateTime.now());
         return error;
     }
+
+
 
 
 }

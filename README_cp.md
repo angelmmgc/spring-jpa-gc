@@ -19,7 +19,12 @@ los datos en una base de datos.
 Todos los datos relacionados con una papeleta de servicio:
 1. Km en moto
 2. Km en coche
-3.
+3. Número de denuncias
+4. Número de auxilios
+5. Número de accidentes atendidos
+6. fecha de la papeleta
+7. horario
+8. componentes del servicio
 
 ## Metodos crud
 
